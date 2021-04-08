@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM PENDAFTARAN</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+</head>
+<body>
+    <center><h2>Form Pendaftaran</h2></center>
+    <div class="container">
+        <div class="row">
+        	<form method="POST" id="form" v-on:submit.prevent="submitForm">
+				<div>
+					<label>Email</label><br>
+					<input type="text" name="email" id="email" placeholder="name@example" v-model="form.email" required>
+				</div>
+				<div>
+					<label>Username</label><br>
+					<input type="text" name="username" id="username" placeholder="contoh:doox" v-model="form.username" required>
+				</div>
+				<div>
+					<label>Password</label><br>
+					<input type="password" name="password" id="password" placeholder="contoh: katakunci" v-model="form.password" required>
+				</div>
+        		<div class="row">
+        			<button v-on:click="submit()">Daftar</button>
+        		</div>
+        	</form>
+        </div>
+    </div>
+    <script>
+        import axios from 'axios';
+
+        export default {
+            name : 'PostFormAxios'
+            data() {
+                return {
+                    form: {
+                        email: '',
+                        username: ''
+                    }
+                }
+            },
+            methods:{
+                submit(){
+                    axios.post('http://localhost:8080/api/v1/user/daftar', this.form)
+                        .then(function( response ){
+
+                        }.bind(this));    
+                    
+                }
+            }
+        }
+    </script>
+	
+</body>
+</html>
